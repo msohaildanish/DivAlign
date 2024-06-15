@@ -13,7 +13,7 @@
 ---
 
 ## 📢 Latest Updates
-
+- **Jun-15-24**: We open source the code, models.🔥🔥
 - **Jun-10-24**: DivAlign paper is released [arxiv link](https://arxiv.org/abs/2405.14497). 🔥🔥
 - **Feb-27-24**: DivAlign has been accepted to **CVPR-24** 🎉. 
 ---
@@ -75,17 +75,19 @@ Download [Diverse Weather](https://github.com/AmingWu/Single-DGOD) and [Cross-Do
 
 ### Training
 We train our models on a 8 GPUs.
-```
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_per_node=8 --master_port=$((RANDOM + 10000)) tools/train_net.py --config-file "configs/pascal_voc/e2e_faster_rcnn_R_101_C4_1x_8_gpu_voc.yaml"
+``` bash
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_per_node=8 --master_port= ((RANDOM + 10000)) tools/train_net.py --config-file "configs/pascal_voc e2e_faster_rcnn_R_101_C4_1x_8_gpu_voc.yaml"
 
     or 
 
 CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 python -m torch.distributed.launch --nproc_per_node=8 --master_port=$((RANDOM + 10000)) tools/train_net.py --config-file "configs/pascal_voc/e2e_faster_rcnn_R_101_C4_1x_8_gpu_dc.yaml"
 ```
 
+### Evaluation
+```bash
+python tools/test_net.py --config-file "configs/pascal_voc/e2e_faster_rcnn_R_101_C4_1x_8_gpu_voc.yaml" --ckpt models/voc-lcal1-lral1/model_final.pth
 
-
-
+```
 
 
 
