@@ -1,0 +1,30 @@
+MODEL:
+  META_ARCHITECTURE: "GeneralizedRCNN"
+  WEIGHT: "catalog://ImageNetPretrained/MSRA/R-101"
+  BACKBONE:
+    CONV_BODY: 'R-101-C4'
+  RPN:
+    PRE_NMS_TOP_N_TEST: 6000
+    POST_NMS_TOP_N_TEST: 300
+    ANCHOR_SIZES: (128, 256, 512)
+  ROI_BOX_HEAD:
+    NUM_CLASSES: 21
+    CAL: True
+    CAL_ALPHA: 1.0
+    RAL: True
+    RAL_BETA: 1.0
+DATASETS:
+  TRAIN: ("voc_2007_trainval", "voc_2012_trainval")
+  TEST: ("voc_2007_test", "clipart_voc_test", "watercolor_voc_test", "comic_voc_test")
+# INPUT:
+#   PIXEL_MEAN: [0.406, 0.456, 0.485]
+#   PIXEL_STD: [ 0.225, 0.224, 0.229]
+SOLVER:
+  BASE_LR: 0.02
+  WEIGHT_DECAY: 0.0001
+  STEPS: (12000, 16000)
+  MAX_ITER: 18000  # 17.4 epochs
+  IMS_PER_BATCH: 16
+TEST:
+  IMS_PER_BATCH: 16
+OUTPUT_DIR: './models/voc-lcal1-lral1'
